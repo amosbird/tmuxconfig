@@ -14,7 +14,7 @@ set -s status-interval 1
 # ------ status theme -------------------------------
 set -s message-style "bg=#00346e, fg=#ffffd7"
 
-set -s status-style "bg=#001122, fg=#ffffd7"
+set -s status-style "bg=#222222, fg=#ffffd7"
 
 set -s status-left "#[bg=#009aff] ❐ #S "
 set -s status-left-length 400
@@ -31,7 +31,7 @@ set -s window-status-activity-style "underscore"
 set -s pane-active-border-style "fg=#009aff"
 set -s pane-border-style "fg=#585858"
 set -s pane-border-status top
-set -s pane-border-format "#[bold,fg=#000000,bg=#009aff]#{pane_current_path}"
+set -s pane-border-format "#[bold,fg=#dddddd,bg=#009aff]#{pane_current_path}"
 
 
 set -s prefix C-x
@@ -50,6 +50,7 @@ unbind -Tcopy-mode-vi MouseDragEnd1Pane
 bind -Tcopy-mode-vi TripleClick1Pane send -X select-line
 bind -Tcopy-mode-vi M-v send-keys -X halfpage-up
 bind -Tcopy-mode-vi C-v send-keys -X halfpage-down
+bind -Tcopy-mode-vi v rectangle-toggle
 
 # need to add all needed root table's key bindings
 set -s key-table amos
