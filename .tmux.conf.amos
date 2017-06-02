@@ -31,7 +31,7 @@ set -s window-status-activity-style "underscore"
 set -s pane-active-border-style "fg=#009aff"
 set -s pane-border-style "fg=#585858"
 set -s pane-border-status top
-set -s pane-border-format "#[bold,fg=#dddddd,bg=#009aff]#{?#(test -n $DIRENV_DIFF),setted,}#{=-40:pane_current_path}"
+set -s pane-border-format "#[bold,fg=#dddddd,bg=#009aff]#{=-40:pane_current_path}"
 
 set -s prefix C-x
 set -s prefix2 C-x
@@ -44,8 +44,11 @@ bind C-f command-prompt -p find-session 'switch-client -t %%'
 bind r source-file ~/.tmux/.tmux.conf.amos \; display '~/.tmux/.tmux.conf.amos sourced'
 
 bind -Tcopy-mode-vi Escape send -X copy-selection-and-cancel
+bind -Tcopy-mode-vi y send -X copy-selection
+bind -Tcopy-mode-vi q send -X clear-selection
 unbind -Tcopy-mode-vi MouseDragEnd1Pane
 bind -Tcopy-mode-vi TripleClick1Pane send -X select-line
+bind -Tcopy-mode-vi v send-keys -X begin-selection
 bind -Tcopy-mode-vi M-v send-keys -X halfpage-up
 bind -Tcopy-mode-vi C-v send-keys -X halfpage-down
 bind -Tcopy-mode-vi d send-keys -X halfpage-down
