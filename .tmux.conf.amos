@@ -42,6 +42,7 @@ bind C-x send-prefix
 bind C-c detach-client
 bind C-f command-prompt -p find-session 'switch-client -t %%'
 bind r source-file ~/.tmux/.tmux.conf.amos \; display '~/.tmux/.tmux.conf.amos sourced'
+bind c new-window
 
 bind -Tcopy-mode-vi Escape send -X copy-selection-and-cancel
 bind -Tcopy-mode-vi y send -X copy-selection
@@ -70,6 +71,10 @@ bind-key -T amos M-h select-pane -L
 bind-key -T amos M-j select-pane -D
 bind-key -T amos M-k select-pane -U
 bind-key -T amos M-l select-pane -R
+bind-key -T amos M-H swap-pane -s '{left-of}'
+bind-key -T amos M-J swap-pane -s '{down-of}'
+bind-key -T amos M-K swap-pane -s '{up-of}'
+bind-key -T amos M-L swap-pane -s '{right-of}'
 bind-key -T amos MouseDown1Pane   select-pane -t = \; send-keys -M
 bind-key -T amos MouseDown1Status select-window -t =
 bind-key -T amos MouseDown3Pane   if-shell -F -t = "#{mouse_any_flag}" "select-pane -t=\; send-keys -M" "select-pane -mt="
