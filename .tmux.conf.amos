@@ -67,10 +67,10 @@ bind-key -T amos M-6 select-window -t 6
 bind-key -T amos M-7 select-window -t 7
 bind-key -T amos M-8 select-window -t 8
 bind-key -T amos M-9 select-window -t 9
-bind-key -T amos M-h select-pane -L
-bind-key -T amos M-j select-pane -D
-bind-key -T amos M-k select-pane -U
-bind-key -T amos M-l select-pane -R
+bind-key -T amos M-h run-shell "fish -c 'if not tmux select-pane -L; i3focus left (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-j run-shell "fish -c 'if not tmux select-pane -D; i3focus down (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-k run-shell "fish -c 'if not tmux select-pane -U; i3focus up (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-l run-shell "fish -c 'if not tmux select-pane -R; i3focus right (tmux display -p \"#{pane_tty}\"); end'"
 bind-key -T amos M-H swap-pane -s '{left-of}'
 bind-key -T amos M-J swap-pane -s '{down-of}'
 bind-key -T amos M-K swap-pane -s '{up-of}'
