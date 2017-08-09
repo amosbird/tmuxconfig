@@ -54,6 +54,10 @@ bind -Tcopy-mode-vi M-v send-keys -X halfpage-up
 bind -Tcopy-mode-vi C-v send-keys -X halfpage-down
 bind -Tcopy-mode-vi d send-keys -X halfpage-down
 bind -Tcopy-mode-vi u send-keys -X halfpage-up
+bind -Tcopy-mode-vi H resize-pane -L 5
+bind -Tcopy-mode-vi J resize-pane -D 5
+bind -Tcopy-mode-vi K resize-pane -U 5
+bind -Tcopy-mode-vi L resize-pane -R 5
 
 # need to add all needed root table's key bindings
 set -s key-table amos
@@ -67,10 +71,10 @@ bind-key -T amos M-6 select-window -t 6
 bind-key -T amos M-7 select-window -t 7
 bind-key -T amos M-8 select-window -t 8
 bind-key -T amos M-9 select-window -t 9
-bind-key -T amos M-h run-shell "fish -c 'if not tmux select-pane -L; i3focus left (tmux display -p \"#{pane_tty}\"); end'"
-bind-key -T amos M-j run-shell "fish -c 'if not tmux select-pane -D; i3focus down (tmux display -p \"#{pane_tty}\"); end'"
-bind-key -T amos M-k run-shell "fish -c 'if not tmux select-pane -U; i3focus up (tmux display -p \"#{pane_tty}\"); end'"
-bind-key -T amos M-l run-shell "fish -c 'if not tmux select-pane -R; i3focus right (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-h run-shell "fish -c 'set d (tmux display -p \"#{pane_at_left}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -L; else; i3focus left (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-j run-shell "fish -c 'set d (tmux display -p \"#{pane_at_bottom}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -D; else; i3focus down (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-k run-shell "fish -c 'set d (tmux display -p \"#{pane_at_top}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -U; else; i3focus up (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos M-l run-shell "fish -c 'set d (tmux display -p \"#{pane_at_right}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -R; else; i3focus right (tmux display -p \"#{pane_tty}\"); end'"
 bind-key -T amos M-H swap-pane -s '{left-of}'
 bind-key -T amos M-J swap-pane -s '{down-of}'
 bind-key -T amos M-K swap-pane -s '{up-of}'
