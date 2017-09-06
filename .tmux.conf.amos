@@ -43,6 +43,8 @@ bind C-c detach-client
 bind C-f command-prompt -p find-session 'switch-client -t %%'
 bind r source-file ~/.tmux/.tmux.conf.amos \; display '~/.tmux/.tmux.conf.amos sourced'
 bind c new-window
+bind d kill-pane
+bind k kill-window
 
 bind -Tcopy-mode-vi Escape send -X copy-selection-and-cancel
 bind -Tcopy-mode-vi y send -X copy-selection
@@ -51,7 +53,7 @@ unbind -Tcopy-mode-vi MouseDragEnd1Pane
 bind -Tcopy-mode-vi TripleClick1Pane send -X select-line
 bind -Tcopy-mode-vi v send-keys -X begin-selection
 bind -Tcopy-mode-vi M-v send-keys -X halfpage-up
-bind -Tcopy-mode-vi C-v send-keys -X halfpage-down
+bind -Tcopy-mode-vi C-v send-keys -X rectangle-toggle
 bind -Tcopy-mode-vi d send-keys -X halfpage-down
 bind -Tcopy-mode-vi u send-keys -X halfpage-up
 bind -Tcopy-mode-vi H resize-pane -L 5
@@ -62,6 +64,9 @@ bind -Tcopy-mode-vi L resize-pane -R 5
 # need to add all needed root table's key bindings
 set -s key-table amos
 bind-key -T amos DoubleClick1Pane copy-mode\; send -X select-word
+bind-key -T amos C-o send-keys C-k
+bind-key -T amos C-j send-keys Down
+bind-key -T amos C-k send-keys Up
 bind-key -T amos M-1 select-window -t 1
 bind-key -T amos M-2 select-window -t 2
 bind-key -T amos M-3 select-window -t 3
@@ -95,3 +100,6 @@ bind-key -T amos M-enter run-shell 'if [[ -v T450s ]]; then i3-msg move to scrat
 bind-key -T amos M-0 set synchronize-panes
 bind-key -T amos C-^ previous-window
 bind-key -T amos C-_ next-window
+bind-key -T amos M-r run-shell "fish -c 'franger'"
+
+# set-hook 'after-new-window' 'run-shell -b "if [ \#{window_name} == Cluster ]; then tmux set pane-border-status; fi"'
