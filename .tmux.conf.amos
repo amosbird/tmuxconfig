@@ -80,6 +80,7 @@ bind-key -T amos M-h run-shell "fish -c 'set d (tmux display -p \"#{pane_at_left
 bind-key -T amos M-j run-shell "fish -c 'set d (tmux display -p \"#{pane_at_bottom}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -D; else; i3focus down (tmux display -p \"#{pane_tty}\"); end'"
 bind-key -T amos M-k run-shell "fish -c 'set d (tmux display -p \"#{pane_at_top}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -U; else; i3focus up (tmux display -p \"#{pane_tty}\"); end'"
 bind-key -T amos M-l run-shell "fish -c 'set d (tmux display -p \"#{pane_at_right}\"); if math \"\$d==0\" > /dev/null ; tmux select-pane -R; else; i3focus right (tmux display -p \"#{pane_tty}\"); end'"
+bind-key -T amos C-@ run-shell "fish -c 'i3focus right (tmux display -p \"#{pane_tty}\")'"
 bind-key -T amos M-H swap-pane -s '{left-of}'
 bind-key -T amos M-J swap-pane -s '{down-of}'
 bind-key -T amos M-K swap-pane -s '{up-of}'
@@ -100,6 +101,5 @@ bind-key -T amos M-enter run-shell 'if [[ -v T450s ]]; then i3-msg move to scrat
 bind-key -T amos M-0 set synchronize-panes
 bind-key -T amos C-^ previous-window
 bind-key -T amos C-_ next-window
-bind-key -T amos M-r run-shell "fish -c 'franger'"
 
 # set-hook 'after-new-window' 'run-shell -b "if [ \#{window_name} == Cluster ]; then tmux set pane-border-status; fi"'
