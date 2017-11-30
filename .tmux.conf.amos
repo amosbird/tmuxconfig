@@ -97,7 +97,7 @@ bind-key -T amos M-v run-shell 'T=$(tmux display -p "#{pane_tty}" | sed "s=/dev/
 bind-key -T amos C-o run-shell 'T=$(tmux display -p "#{pane_tty}" | sed "s=/dev/=="); if pgrep -t$T "cgdb|gdb|kui_driver" &> /dev/null; then tmux send-key C-o; else tmux send-keys C-k; fi'
 bind-key -T amos C-v send-key C-v
 
-bind-key -T amos M-enter run-shell 'if [[ -v T450s ]]; then i3-msg move to scratchpad, workspace  &> /dev/null; else tmux switch-client -t emacs; fi'
+bind-key -T amos M-enter run-shell 'if env | grep "^T450s" > /dev/null; then i3-msg move to scratchpad, workspace  &> /dev/null; else tmux switch-client -t emacs; fi'
 bind-key -T amos M-0 set synchronize-panes
 bind-key -T amos C-^ previous-window
 bind-key -T amos C-_ next-window
